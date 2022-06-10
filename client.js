@@ -13,7 +13,19 @@ const connect = function () {
     conn.write("Name: LLS")//sending message to server
   });
 
-  
+
+  conn.on("connect", () => {
+    setTimeout(() => {
+      conn.write("Move: up")//sending message to server
+    }, 1000)
+  });  
+
+  conn.on("connect", () => {
+    setTimeout(() => {
+      conn.write("Move: left")//sending message to server
+    }, 1300)
+  });  
+
 
   conn.on("data", (data) => {//the message from server
     console.log(data) //handling incoming data
