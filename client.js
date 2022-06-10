@@ -13,6 +13,7 @@ const connect = function () {
   conn.on("connect", () => {
     console.log('connected to snake server')
     conn.write("Name: LLS")//sending message to server
+    conn.write("Say: hello")
   });
 
 
