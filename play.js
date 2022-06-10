@@ -2,10 +2,10 @@ console.log('hello');
 const  connect  = require("./client");
 const  setupInput  = require("./input");
 
+let conn = connect()
 
-connect();
 
-setupInput();
+setupInput(conn);
 
 
 
