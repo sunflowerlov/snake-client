@@ -10,8 +10,10 @@ const connect = function () {
   conn.setEncoding("utf8");
   
   conn.on("connect", () => {
-    conn.write('you ded cuz you idled')//sending message to server
+    conn.write("Name: LLS")//sending message to server
   });
+
+  
 
   conn.on("data", (data) => {//the message from server
     console.log(data) //handling incoming data
@@ -27,6 +29,7 @@ const connect = function () {
 console.log("Connecting ...");
 connect();
 
-myObject.myNumber; // => 42
-myObject.myString; // => hello
-myObject.myFunction; // the function you wrote
+console.log(myObject); // => { A: 42, B: 43, C: 44 }
+console.log(myObject.A); // => 42
+console.log(myObject.B); // => 43
+console.log(myObject.C); // => 44
