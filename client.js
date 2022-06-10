@@ -1,17 +1,19 @@
 const net = require("net");
-const myObject = require("./play.js");
 
 const connect = function () {
+  console.log("Connecting ...");
+
   const conn = net.createConnection({
     host: "localhost",
     port: 50541,
   });
   // interpret incoming data as text
   conn.setEncoding("utf8");
-  
-  // conn.on("connect", () => {
-  //   conn.write("Name: LLS")//sending message to server
-  // });
+
+  conn.on("connect", () => {
+    console.log('connected to snake server')
+    conn.write("Name: LLS")//sending message to server
+  });
 
 
   // conn.on("connect", () => {
@@ -27,18 +29,14 @@ const connect = function () {
   // });  
 
 
-  // conn.on("data", (data) => {//the message from server
-  //   console.log(data) //handling incoming data
-  // })
+  conn.on("data", (data) => {//the message from server
+    console.log(data) //handling incoming data
+  })
 
   // console.log('you ded cuz you idled')
   return conn;
 
-
-  
 };
-
-console.log("Connecting ...");
 module.exports = connect
 
 // console.log(myObject); // => { A: 42, B: 43, C: 44 }
