@@ -1,42 +1,27 @@
 const net = require("net");
+const connect = require("./client.js")
 
+// let coonect
+const setupInput = function () {
+  const stdin = process.stdin;//stdin allow us to listen for keyboard input and react
+  stdin.setRawMode(true);
+  stdin.setEncoding("utf8");
+  stdin.resume();
 
-// establishes a connection with the game server
-const connect = function () {
-  const conn = net.createConnection({
-    host: "10.0.2.15",
-    port: 50541,
-  });
-  // interpret incoming data as text
-  conn.setEncoding("utf8");
-  
-  conn.on("connect", () => {
-    conn.write('you ded cuz you idled')//sending message to server
-  });
+  const handleUserInput = function (key) {
+    console.log(key)
 
-  conn.on("data", (data) => {//the message from server
-    console.log(data) //handling incoming data
-  })
-
-  console.log('you ded cuz you idled')
-  return conn;
-
-
-  
+    // 'q' will stop process
+    if(key === 'q') {
+      process.exit()
+    }
+  };
+  stdin.on("data", handleUserInput);//"data" => user input , representing (key) here
+  return stdin;
 };
 
+// connect()
+setupInput()
+module.exports = { A: 42, B: 43, C: 44 };
 
-console.log("Connecting ...");
-connect();
-
-const num = 42;
-const str = "hello";
-const func = () => {
-  // myFunction's code
-};
-
-module.exports = {
-  myNumber: num, // stores 42 as myNumber
-  myString: str, // stores "hello" as myString
-  myFunction: func, // stores func (the function) as myFunction
-};
+//https://stackoverflow.com/questions/14406108/how-to-trigger-event-stdin-ondata-callback-in-the-code
