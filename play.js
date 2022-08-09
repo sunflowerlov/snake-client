@@ -1,12 +1,7 @@
-console.log('hello');
-const  connect  = require("./client");
-const  setupInput  = require("./input");
+const connect = require('./client')
+const setupInput = require('./input')
 
-let conn = connect()
+const conn = connect() 
 
-
-setupInput(conn);
-
-
-
+setupInput(conn)
 
